@@ -1,0 +1,17 @@
+.drawer {
+    color: black;
+    width: 100%;
+    border: 1px solid rgba(128, 128, 128, 0.24);
+    margin: .5em 0;
+    padding: 1em .25em
+}
+.header_ctn {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    > * {
+        margin: 0;
+        padding: 0;
+    }
+}
