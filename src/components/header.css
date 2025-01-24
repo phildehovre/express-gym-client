@@ -1,11 +1,12 @@
 header {
     width: 100%;
     height: 60px;
-    position: absolute;
+    position: sticky;
     top: 0;
     left: 0;
     color: var(--clr-text-dark);
-    background-color: var(--clr-accent-primary);
+    background-color: white;
+    z-index: 10;
 }
 
 nav {

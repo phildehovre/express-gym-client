@@ -1,3 +1,90 @@
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 117, 101, 0.068);
+    background: var(--clr-gradient-bg); 
+    z-index: -1;
+}
 .hero_ctn {
-    height: 60svh;
+    height: 100svh;
+    color: black;
+    border: 1px solid lavender;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3em 3em;
+    overflow: hidden;
+
+    > .btn {
+        padding: .75em;
+        margin: .5em;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+}
+
+.hero-img_ctn {
+    position: relative;
+    padding: .75em;
+}
+.hero-img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: 1/1;
+    box-shadow: 1em 1em 1.5em .5em rgba(0, 0, 0, 0.253);
+}
+
+.badge {
+    position: absolute;
+    top: -2.5em;
+    right: -2.5em;
+    background-color: rgb(37, 37, 37);
+    width: 7em;
+    height: 7em;
+    border-radius: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(15deg);
+
+    > .slogan {
+        font-weight: 900;
+        font-size: 1.75em;
+        background: var(--clr-gradient-accent); 
+        background-clip:text;
+        color: transparent;
+        line-height: 1em
+    }
+    > .slogan-sub {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5em;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.76);
+        text-transform:uppercase;
+        letter-spacing: -.1em;
+    }
+}
+
+.promo {
+    text-align: center;
+    font-size: 1.75em;
+    padding: 0 2em;
+    font-weight:900;
+    text-transform: uppercase;
+    margin: .25em 0;
+    line-height: 1em;
+}
+
+.partners-promo {
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.25em;
 }

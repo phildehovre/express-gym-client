@@ -20,10 +20,13 @@
 
 
   /* Colors */
+  --clr-cta: rgb(78, 7, 192);
   --clr-accent-primary: rgb(37, 230, 204);
   --clr-accent-secondary: rgb(0, 117, 102);
   --clr-text-dark: rgb(19, 19, 19);
   --clr-text-light: white;
+  --clr-gradient-accent: linear-gradient(330deg, rgb(0, 117, 101) 0%, rgb(37, 230, 204) 44%);
+  --clr-gradient-bg: linear-gradient(330deg, rgba(0, 117, 101, 0.774) 0%, rgba(37, 230, 204, 0.37) 44%);
 
   /* Borders */
   --b-radius-card: 6px;
@@ -46,6 +49,8 @@ body {
 }
 
 main {
+  width: 100svw;
+  height: 100%;
 }
 
 h1 {
@@ -54,16 +59,15 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: var(--clr-accent-primary);
-  color: var(--clr-text-dark);
   cursor: pointer;
   transition: border-color 0.25s;
+  width: 100%;
 }
 button:hover {
   border-color: var(--clr-accent-secondary); 
@@ -71,7 +75,18 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* outline: 4px auto -webkit-focus-ring-color; */
+}
+
+.btn_primary {
+  background-color: var(--clr-cta);
+  color: var(--clr-text-light)
+}
+
+.btn_secondary {
+  background-color: transparent; 
+  border: 1px solid var(--clr-accent-secondary);
+  color: var(--clr-accent-secondary)
 }
 
 @media (prefers-color-scheme: light) {
@@ -91,4 +106,7 @@ button:focus-visible {
   body {
     padding: 0 5em;
   }
+}
+
+.homepage {
 }
