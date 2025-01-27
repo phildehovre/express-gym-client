@@ -8,9 +8,9 @@ const MembershipCard = (props) => {
     return mt.benefits.map(b => {
         return (
             <li key={b}>
-                <CheckIcon />
+                  <CheckIcon />
                 <p>
-                    {b}
+                  {b}
                 </p>
             </li>
             )
@@ -19,7 +19,12 @@ const MembershipCard = (props) => {
 
   return (
     <div className='membership-card_ctn'>
-        <div className="card_header">{mt.name}</div>
+        <div className="card_header">
+          <h4>
+            {mt.name}
+          </h4>
+          <h2>{mt.price}</h2>
+          </div>
         <div className="card_body">
             <img src={mt.imageUrl} alt={mt.imageAlt} className="card_image" />
             <ul className="benefits">{renderBenefits()}</ul>

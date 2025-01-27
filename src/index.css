@@ -89,6 +89,14 @@ button:focus-visible {
   color: var(--clr-accent-secondary)
 }
 
+.highlight {
+  color: var(--clr-accent-secondary)
+}
+
+.text-dark {
+  color: var(--clr-text-dark)
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -108,5 +116,3 @@ button:focus-visible {
   }
 }
 
-.homepage {
-}
