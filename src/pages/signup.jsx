@@ -14,7 +14,7 @@ const SignUpPage = () => {
     const navigate = useNavigate()
     const {pathname} = useLocation()
 
-    const url = import.meta.env.VITE_DEV_API_URL 
+    const url = import.meta.env.VITE_API_URL 
 
     const handleLogin = async (isLoading) => {
         isLoading(true)

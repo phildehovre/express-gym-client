@@ -15,6 +15,19 @@ useEffect(() => {
 }, [term])
 
 
+useEffect(() => {
+    (async () => {
+        try {
+            const res = await fetch('http://localhost:8080/location')
+            const data = await res.json()
+            console.log(data)
+        } catch (error) {
+           console.log(error) 
+        }
+
+    })()
+}, [])
+
 
 useEffect(() => {
     //TODO: Check cookies for location
