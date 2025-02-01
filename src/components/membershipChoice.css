@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: .5em;
+    gap: 2em;
     width: 100%;
     min-height: 80svh;
     padding: 0 1.5em;
@@ -19,12 +19,21 @@
     height: 100%;
     width: 100%;
     border-radius: var(--b-radius-card);
-    overflow: hidden;
 
     > .card_header {
         font-weight: bold;
         text-align: center;
         font-size: 1.25rem;
+    }
+
+    > .card_footer {
+        padding: 1.5em;
+        height: 100%;
+        width: 100%;
+
+        > .card_btn {
+            color: black
+        }
     }
 }
 .membership-card_ctn > .card_body { 
@@ -33,6 +42,8 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    padding: 1em 0 ;
+    gap: 1em;
 
         > .card_image {
             object-fit:cover;
@@ -43,7 +54,6 @@
     }
 
 .membership-card_ctn > .card_body > .benefits { 
-    padding: 0 ;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -59,6 +69,7 @@
         justify-content: flex-start;
         text-align: left;
         width: 100%;
+        gap: .5em;
         > p {
             width: 100%;
             text-align: left;
@@ -67,11 +78,53 @@
 
 }
 .membership-card_ctn > .card_header { 
-    padding: 1.25em ;
     width: 100%;
-    background-color: var(--clr-accent-primary);
     text-align: left;
+    display: flex;
+    background: var(--clr-gradient-bg);
+
+    > .left, 
+    .right {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: .5em 2em;
+
+        > * {
+            line-height: 1.1em;
+            width: 100%;
+        }
+
+        > h4 {
+            font-weight: 500;
+        }
+
+        > h1 {
+            font-size: 2em;
+            margin: 0;
+        > small {
+            font-weight: 400;
+            text-align: left;
+            font-size: .4em;
+            color: var(--clr-accent-secondary)
+        }
+        }
+
+    }
 }
+
+
+.membership-card_ctn > .card_header > .right > img {
+    height: 6em;
+    width: auto;
+    aspect-ratio: 1/1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
 
 @media (min-width: 900px) {
     .memberships_ctn {

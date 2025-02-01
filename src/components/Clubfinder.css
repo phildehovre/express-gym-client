@@ -52,11 +52,17 @@
 
     > ul{
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        > li {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+        gap: .25em;
+
+        > .location_btn {
             text-align: left;
             width: 100%;
+            padding: .5em .25em;
+            text-align: center;
+            border: var(--clr-accent-secondary) 1px solid
         }
     }
+
 }

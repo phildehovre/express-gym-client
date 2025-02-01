@@ -6,7 +6,6 @@ const Hero = () => {
   const navigate = useNavigate()
   return (
     <>
-    <div className="background"></div>
     <section className="hero_ctn">
       <div className="hero-img_ctn">
         <img className="hero-img" src='https://res.cloudinary.com/dtnif6mzm/image/upload/v1737476934/express-gym/Leonardo_Lightning_XL_A_picture_of_a_smiling_person_in_the_mid_2_zlympz.jpg' alt='a happy gymgoer'/>

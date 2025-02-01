@@ -27,6 +27,7 @@ const LocationsPage = () => {
         locations={locations} 
         getLocation={getLocation}
         />
+        
     </>
   )
 }

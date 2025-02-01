@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -25,8 +27,8 @@
   --clr-accent-secondary: rgb(0, 117, 102);
   --clr-text-dark: rgb(19, 19, 19);
   --clr-text-light: white;
-  --clr-gradient-accent: linear-gradient(330deg, rgb(0, 117, 101) 0%, rgb(37, 230, 204) 44%);
-  --clr-gradient-bg: linear-gradient(330deg, rgba(0, 117, 101, 0.774) 0%, rgba(37, 230, 204, 0.37) 44%);
+  --clr-gradient-accent: linear-gradient(300deg, rgb(0, 117, 101) 0%, rgb(37, 230, 204) 44%);
+  --clr-gradient-bg: linear-gradient(300deg, rgb(0, 172, 149) 0%, rgba(43, 255, 227, 0.37) 50%);
 
   /* Borders */
   --b-radius-card: 6px;
@@ -37,21 +39,28 @@ a {
   color: var(--clr-accent-secondary);
   text-decoration: inherit;
 }
+
+
+b {
+  color: var(--clr-accent-secondary)
+}
 a:hover {
   color: var(--clr-accent-primary);
 }
 
 body {
-  display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  margin: 0;
+  overflow-x: hidden;
+padding: 0 0 !important;
 }
 
 main {
   width: 100svw;
   height: 100%;
+  width: 100svw;
+}
+
+.homepage {
 }
 
 h1 {

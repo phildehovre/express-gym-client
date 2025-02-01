@@ -3,11 +3,11 @@ import './membershipChoice.css'
 import {CheckIcon} from 'lucide-react'
 
 const MembershipCard = (props) => {
-    const {mt} = props
+    const {mt, preceding} = props
   const renderBenefits = () => {
     return mt.benefits.map(b => {
         return (
-            <li key={b}>
+            <li key={b} className='benefit_list-item'>
                   <CheckIcon />
                 <p>
                   {b}
@@ -17,20 +17,30 @@ const MembershipCard = (props) => {
     })
   }
 
+
   return (
     <div className='membership-card_ctn'>
         <div className="card_header">
-          <h4>
-            {mt.name}
-          </h4>
-          <h2>{mt.price}</h2>
+          <div className="left">
+            <h4>
+              {mt.name}
+            </h4>
+            <h1>{mt.price}
+              <small>/month</small>
+            </h1>
+          </div>
+          <div className="right">
+            <img src={mt.imageUrl} alt={mt.imageAlt} className="card_image" />
+          </div>
           </div>
         <div className="card_body">
-            <img src={mt.imageUrl} alt={mt.imageAlt} className="card_image" />
+          {preceding && <p>Everything <b>
+           {preceding} </b> offers plus: </p>}
+          
             <ul className="benefits">{renderBenefits()}</ul>
         </div>
         <div className="card_footer">
-          <button>Select</button>
+          <button className='card_btn'>Choose {mt.name}</button>
         </div>
     </div>
   )

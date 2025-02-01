@@ -1,23 +1,13 @@
-.background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 117, 101, 0.068);
-    background: var(--clr-gradient-bg); 
-    z-index: -1;
-}
+
 .hero_ctn {
-    height: 100svh;
     color: black;
-    border: 1px solid lavender;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 3em 3em;
     height: 100%;
     overflow: hidden;
+    background: var(--clr-gradient-bg); 
 
     > .btn {
         padding: .75em;

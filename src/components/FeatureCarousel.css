@@ -1,0 +1,64 @@
+.carousel_ctn {
+    overflow-x: hidden;
+    margin: 0 auto;
+    padding: 1.5em 0;
+    height: 75vh;
+}
+
+.feature_carousel {
+    height: 100%;
+}
+    .carousel_item {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 0 1.5em;
+        position: relative;
+        height: 100%;
+
+        > svg {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            height: 100%;
+        }
+
+        .img_ctn {
+            position: relative;
+            > img {
+                height: auto;
+                width: 100%;
+                aspect-ratio: 1/1;
+                position: absolute;
+                z-index: -1;
+            }
+
+        }
+        .carousel_card {
+            background-color: white;
+            text-align: left;
+            color: black;
+            width: 82.5%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 1em 1em 1.5em .5em rgba(0, 0, 0, 0.253);
+            padding: 1em;
+
+            > * {
+                width: 100%;
+            }
+
+            > h1 {
+                margin: 0;
+                font-size: 1.8em;
+            }
+
+            > h2 {
+                font-size: 1.8em;
+                color: var(--clr-accent-secondary)
+            }
+        }
+    }

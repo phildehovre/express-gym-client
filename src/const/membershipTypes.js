@@ -2,7 +2,7 @@ export const membershipTypes = [
     {
         name: 'Starter',
         price: '$20',
-        imageUrl: "https://res.cloudinary.com/dtnif6mzm/image/upload/v1737476934/express-gym/Leonardo_Lightning_XL_A_close_up_portrait_of_a_person_working_3_twvorj.jpg",
+        imageUrl: "https://res.cloudinary.com/dtnif6mzm/image/upload/v1738328778/express-gym/lady1_no_bg_cdopcc.png",
         imageAlt: "A happy gymgoer",
         description: 'Perfect for beginners who want access to basic facilities.',
         benefits: [
@@ -14,7 +14,7 @@ export const membershipTypes = [
     {
         name: 'Pro',
         price: '$50',
-        imageUrl: "https://res.cloudinary.com/dtnif6mzm/image/upload/v1737476934/express-gym/Leonardo_Lightning_XL_a_chubby_guy_smiling_doing_crazy_pushups_1_hdee3m.jpg",
+        imageUrl: "https://res.cloudinary.com/dtnif6mzm/image/upload/v1738328778/express-gym/girl1_no_bg_lnzycj.png",
         imageAlt: "A happy gymgoer",
         description: 'Ideal for fitness enthusiasts who want extra perks.',
         benefits: [
@@ -27,7 +27,7 @@ export const membershipTypes = [
     {
         name: 'Elite',
         price: '$100',
-        imageUrl: "https://res.cloudinary.com/dtnif6mzm/image/upload/v1737476930/express-gym/Leonardo_Lightning_XL_a_normal_looking_person_doing_muscle_ups_2_kzfdvs.jpg",
+        imageUrl: "https://res.cloudinary.com/dtnif6mzm/image/upload/v1738330415/express-gym/openart-973fcdaf-c538-445c-8b2c-edaeb8f4b37d_fwxkdi.png",
         imageAlt: "A happy gymgoer",
         description: 'For the dedicated athlete looking for premium benefits.',
         benefits: [

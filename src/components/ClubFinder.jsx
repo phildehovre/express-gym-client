@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import './ClubFinder.css'
 import {SearchIcon} from 'lucide-react'
+import { fetchWithCredentials } from '../utils/fetchWithCredentials'
 
 const ClubFinder = () => {
 const [term, setTerm] = useState('')
 const [language,setLanguage] = useState('')
 const [location, setLocation] = useState('')
+const [locations, setLocations] = useState([])
 
 useEffect(() => {
     (async () => {
@@ -14,18 +16,19 @@ useEffect(() => {
     })()
 }, [term])
 
+    const success = (loc) => {
+        console.log(loc)
+    }
+    const error = (err) => {
+        console.error(err)
+    }
 
 useEffect(() => {
     (async () => {
-        try {
-            const res = await fetch('http://localhost:8080/location')
-            const data = await res.json()
-            console.log(data)
-        } catch (error) {
-           console.log(error) 
-        }
-
+     const locations = await fetchWithCredentials('GET', '/location')
+        setLocations(locations)
     })()
+    window.navigator.geolocation.getCurrentPosition(success, error)
 }, [])
 
 
@@ -48,6 +51,16 @@ useEffect(() => {
     })()
 }, [])
 
+const renderLocations = () => {
+    if (locations && locations.length > 0) {
+        return locations.map((loc, i) => {
+            return (
+                <li className="location_btn" key={loc.name+i} id={loc._id}>{loc.city}</li>
+            )
+        })
+
+    }
+}
 
   return (
 
@@ -63,9 +76,7 @@ useEffect(() => {
             </div>
             <div className="club-suggestions text-dark">
                 <ul>
-                    <li>Brussels</li>
-                    <li>Liege</li>
-                    <li>Namur</li>
+                    {renderLocations()}
                 </ul>
             </div>
         </div>
