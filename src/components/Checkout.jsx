@@ -18,10 +18,21 @@ const Checkout = () => {
     useEffect(() => {
         const newParams = new URLSearchParams(searchParams)
         const stage = newParams.get('stage')
+        const membershipType = newParams.get('type')
+        const selectedClub = newParams.get('club')
         if (!stage) {
             newParams.set('stage', 'homeclub')
             navigate(`?${newParams.toString()}`)
         }
+
+        if (membershipType) {
+            setMembership(membershipType)
+        }
+
+        if (selectedClub) {
+            setHomeClub(selectedClub)
+        }
+
     }, [])
 
     const determineNext = (header) => {

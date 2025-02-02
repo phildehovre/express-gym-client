@@ -5,6 +5,9 @@
   padding: 0;
   margin: 0 auto;
 }
+  /* outline: 2px solid blue;
+  outline: 2px solid yellow;
+  border: 2px solid red inset; */
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -51,16 +54,17 @@ a:hover {
 body {
   place-items: center;
   overflow-x: hidden;
-padding: 0 0 !important;
+  padding: 0 0 !important;
 }
 
 main {
-  width: 100svw;
   height: 100%;
   width: 100svw;
+  padding: 0 !important;
 }
 
 .homepage {
+  max-width: 100svw;
 }
 
 h1 {

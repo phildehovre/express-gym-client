@@ -1,8 +1,10 @@
 import React from 'react'
 import './membershipChoice.css'
 import {CheckIcon} from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const MembershipCard = (props) => {
+  const navigate = useNavigate()
     const {mt, preceding} = props
   const renderBenefits = () => {
     return mt.benefits.map(b => {
@@ -40,7 +42,7 @@ const MembershipCard = (props) => {
             <ul className="benefits">{renderBenefits()}</ul>
         </div>
         <div className="card_footer">
-          <button className='card_btn'>Choose {mt.name}</button>
+          <button className='card_btn' onClick={() => navigate(`/checkout?type=${mt.name.toLowerCase()}`)}>Choose {mt.name}</button>
         </div>
     </div>
   )

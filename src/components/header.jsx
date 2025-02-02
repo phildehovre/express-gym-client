@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 const Header = () => {
   return (
       <header>
-        <div className="logo">Logo</div>
         <nav className="nav desktop">
+        <div className="logo">Logo</div>
           <ul className="links">
             <li>
             <Link to='/' >Home</Link>
