@@ -14,29 +14,42 @@ const Drawer = ({children, isOpen, header, next}) => {
         navigate(`?${newParams.toString()}`)
     }
 
-    const renderHeader = () => {
+  return (
+        <div className="drawer">
+            {children}
+        </div>
+    )
+    }
+
+const Header = ({children}) => {
         return (
                 <div className="header_ctn">
                     <ChevronRight/>
-                    <h4>{header}</h4>
+                {children}
                 </div>
         )
-    }
+}
 
-    const renderChildren = () => {
+const Body = ({children, isOpen}) => {
+    if (isOpen) {
         return (
-            <>
+            <div className="body_ctn">
                 {children}
-                <button onClick={() => updateUrl()}></button>
-            </>
+            </div>
         )
     }
-
-  return (
-    <div className="drawer">
-        {isOpen? renderChildren(): renderHeader()}
-    </div>
-  )
 }
+
+const Footer =  ({children}) => {
+    return (
+        <div className="footer_ctn">
+            {children}
+        </div>
+    )
+}
+
+Drawer.Header = Header
+Drawer.Body = Body
+Drawer.Footer = Footer
 
 export default Drawer

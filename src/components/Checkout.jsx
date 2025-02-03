@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Drawer from './Drawer'
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import ClubFinder from './ClubFinder'
 
 const Checkout = () => {
     const [homeClub, setHomeClub] = useState('')
@@ -13,6 +14,7 @@ const Checkout = () => {
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
     const stage = searchParams.get('stage')
+    
     const checkoutOrder = ['homeclub', 'membership', 'addons', 'details', 'payment']
 
     useEffect(() => {
@@ -44,14 +46,21 @@ const Checkout = () => {
   return (
     <div>
         <Drawer 
-            isOpen={stage === 'homeclub'} 
             header='Homeclub'
             next={determineNext('homeclub')}
         > 
-            <h1>Homeclub</h1>
+            <Drawer.Header >
+                <h1>Home club</h1>
+            </Drawer.Header>
+            <Drawer.Body
+                isOpen={true} 
+                // isOpen={stage === 'homeclub' && !homeClub} 
+            >
+                <ClubFinder />
+            </Drawer.Body>
         </Drawer>
         <Drawer 
-            isOpen={stage == 'membership'} 
+            isOpen={stage == 'membership' && !membership} 
             header='Membership'
             next={determineNext('membership')}
         >
