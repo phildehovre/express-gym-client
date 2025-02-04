@@ -1,35 +1,59 @@
 import React, { useState, useEffect } from 'react'
 import './ClubFinder.css'
-import {SearchIcon} from 'lucide-react'
+import {Loader, SearchIcon} from 'lucide-react'
 import { fetchWithCredentials } from '../utils/fetchWithCredentials'
+import ClubCard from './ClubCard'
+import Spinner from './Spinner'
 
 const ClubFinder = () => {
 const [term, setTerm] = useState('')
 const [language,setLanguage] = useState('')
 const [location, setLocation] = useState('')
 const [locations, setLocations] = useState([])
+const [locSuggestions, setLocSuggestions] = useState([])
+const [currentPosition, setCurrentPosition] = useState([])
+const [selectedRange, setSelectedRange] = useState(55)
+
+const DEBOUNCE_DELAY = 500; 
 
 useEffect(() => {
-    (async () => {
-        console.log("term changing")
-        // TODO: handle search term
-    })()
-}, [term])
+    const handler = setTimeout(async () => {
+        if (term) {
+            const data = await fetchWithCredentials('GET', `/location?q=${term}`);
+            setLocations(data)
+        }
+    }, DEBOUNCE_DELAY);
 
-    const success = (loc) => {
-        console.log(loc)
-    }
-    const error = (err) => {
-        console.error(err)
-    }
+    return () => clearTimeout(handler); 
+}, [term]);
 
+/** 
+ * Initialize user GeoLocation
+ */
 useEffect(() => {
-    (async () => {
-     const locations = await fetchWithCredentials('GET', '/location')
-        setLocations(locations)
-    })()
-    window.navigator.geolocation.getCurrentPosition(success, error)
+    window.navigator.geolocation.getCurrentPosition(
+        loc => setCurrentPosition(loc.coords), 
+        err => console.error(err)) 
 }, [])
+
+/**
+ * Once user coordinates are set
+ * fetch nearby locations
+ */
+useEffect(() => {
+    const {latitude, longitude} = currentPosition
+    const RANGE = selectedRange || 55 
+    
+    if (currentPosition.latitude && currentPosition.longitude) {
+        (async () => {
+            const locations = await fetchWithCredentials('GET', `/location/near?lng=${longitude}&lat=${latitude}&rng=${RANGE}`)
+            setLocSuggestions(locations)
+            if (locations.length > 0) {
+                setTerm('')
+        }
+        })()
+    }
+}, [currentPosition, selectedRange])
 
 
 useEffect(() => {
@@ -52,13 +76,25 @@ useEffect(() => {
 }, [])
 
 const renderLocations = () => {
-    if (locations && locations.length > 0) {
-        return locations.map((loc, i) => {
+    if (locSuggestions && locSuggestions.length > 0) {
+        return locSuggestions.map((loc, i) => {
             return (
                 <li className="location_btn" key={loc.name+i} id={loc._id}>{loc.city}</li>
             )
         })
 
+    }
+}
+
+const renderClubCards = () => {
+    if (locations && locations.length > 0) {
+        return locations.map((loc, i) => {
+            return (
+                <ClubCard className="location_btn" key={loc.name+i} location={loc} />
+            )
+        })
+    } else {
+        return <Spinner />
     }
 }
 
@@ -79,6 +115,15 @@ const renderLocations = () => {
                     {renderLocations()}
                 </ul>
             </div>
+        </div>
+        <div className='clubcards_ctn'>
+            {term && locations.length == 0 &&
+                    <Spinner />
+            }
+            {term && locations.length> 0 &&
+                renderClubCards()
+            }
+
         </div>
     </div>
   )

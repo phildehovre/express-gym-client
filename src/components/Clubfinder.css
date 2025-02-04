@@ -8,10 +8,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 1em 1em 1.5em .5em rgba(0, 0, 0, 0.253);
+    box-shadow: .25em .25em .5em .25em rgba(0, 0, 0, 0.150);
     padding: 1em; 
     flex-direction: column;
     background: white;
+        
         > h1 {
             color: black;
             text-align: center;
@@ -65,4 +66,8 @@
         }
     }
 
+}
+
+.clubcard_ctn {
+    margin: 1em 0;
 }

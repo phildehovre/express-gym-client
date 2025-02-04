@@ -1,0 +1,11 @@
+.spinner_ctn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+.spinner {
+    width: 2.5em;
+    text-align: center;
+}

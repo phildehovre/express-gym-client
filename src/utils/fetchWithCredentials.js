@@ -11,5 +11,6 @@ export const fetchWithCredentials = async (method, endpoint, payload = {}) => {
         } catch (error) {
         console.error(error) 
         }
+
     }
 }
