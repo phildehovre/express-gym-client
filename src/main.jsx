@@ -4,11 +4,14 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import './index.css'
 import './normalize.css'
 import App from './App.jsx'
+import CheckoutProvider from './context/Checkoutcontext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <CheckoutProvider>
+      <Router>
+        <App />
+      </Router>
+    </CheckoutProvider>
   </StrictMode>,
 )

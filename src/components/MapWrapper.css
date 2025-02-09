@@ -1,0 +1,9 @@
+.map_wrapper {
+    height: 35svh;
+}
+
+@media (min-width: 600px) {
+    .map_wrapper {
+        height: 100%;
+    }
+}

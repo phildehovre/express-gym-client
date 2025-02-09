@@ -1,0 +1,31 @@
+.club-detail_ctn {
+    width: 100%;
+    max-height: 500px;
+}
+.club-detail_body {
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+        > img {
+            max-height: 350px;
+        }
+}
+
+.club-detail_info {
+    > ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        >li {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 1rem;
+
+            :first-child {
+                color: var(--clr-accent-primary)
+            }
+        }
+    }
+}

@@ -1,10 +1,14 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Drawer from './Drawer'
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import ClubFinder from './ClubFinder'
+import MembershipChoice from './membershipChoice'
+import useCookies from '../hooks/useCookies'
+import { CheckoutContext } from '../context/Checkoutcontext'
+import ClubDetail from './ClubDetail'
 
 const Checkout = () => {
-    const [homeClub, setHomeClub] = useState('')
+    const [homeClub, setHomeClub] = useState(undefined)
     const [membership, setMembership] = useState('')
     const [addons, setAddons] = useState([])
     const [continueWithSelected, setContinueWithSelected] = useState(false)
@@ -13,6 +17,8 @@ const Checkout = () => {
 
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
+    const {setCookie, getCookie, deleteCookie} = useCookies()
+    const {location} = useContext(CheckoutContext)
     const stage = searchParams.get('stage')
     
     const checkoutOrder = ['homeclub', 'membership', 'addons', 'details', 'payment']
@@ -20,8 +26,10 @@ const Checkout = () => {
     useEffect(() => {
         const newParams = new URLSearchParams(searchParams)
         const stage = newParams.get('stage')
-        const membershipType = newParams.get('type')
-        const selectedClub = newParams.get('club')
+
+        const membershipType = getCookie('type')
+        const selectedClub = getCookie('club') 
+
         if (!stage) {
             newParams.set('stage', 'homeclub')
             navigate(`?${newParams.toString()}`)
@@ -31,11 +39,24 @@ const Checkout = () => {
             setMembership(membershipType)
         }
 
-        if (selectedClub) {
-            setHomeClub(selectedClub)
+        if (selectedClub || location) {
+            setHomeClub(selectedClub || location)
         }
 
-    }, [])
+    }, [stage])
+    console.log(homeClub)
+
+    const handleMembershipselection = (membershipType) => {
+        deleteCookie('type')
+        setCookie('type', membershipType)
+        setMembership(membershipType)
+        navigate(`/checkout?stage=addons`)
+    }
+
+    const handleHomeClubSelection = (location) => {
+        setHomeClub(location)
+        setCookie('club', location)
+    }
 
     const determineNext = (header) => {
         const next = checkoutOrder[checkoutOrder.indexOf(header) + 1]
@@ -45,26 +66,43 @@ const Checkout = () => {
     }
   return (
     <div>
-        <Drawer 
-            header='Homeclub'
-            next={determineNext('homeclub')}
-        > 
+        <Drawer> 
             <Drawer.Header >
-                <h1>Home club</h1>
+                <h1>Select your home club</h1>
+                {
+                    homeClub && stage !== 'homeclub' && 
+                    <>
+                        <p>{homeClub.name}</p>
+                        <a href={`/checkout?stage=homeclub`}>Edit</a>
+                    </>
+                }
             </Drawer.Header>
-            <Drawer.Body
-                isOpen={true} 
-                // isOpen={stage === 'homeclub' && !homeClub} 
-            >
-                <ClubFinder />
+            <Drawer.Body isOpen={stage == 'homeclub'}>
+                <ClubFinder 
+                    onSelect={handleHomeClubSelection} 
+                    selectedClub={homeClub}
+                />
+                {homeClub && <ClubDetail location={homeClub}/>}
             </Drawer.Body>
+            <Drawer.Footer isOpen={stage == 'homeclub'}>
+                <button onClick={() => {navigate(`/checkout?stage=membership`)}} disabled={!homeClub}>NEXT</button>
+            </Drawer.Footer>
         </Drawer>
-        <Drawer 
-            isOpen={stage == 'membership' && !membership} 
-            header='Membership'
-            next={determineNext('membership')}
-        >
-            <h1>Membership</h1>
+        <Drawer>
+            <Drawer.Header>
+                <h1>Membership</h1>
+                {
+                    membership && stage !== 'membership' && 
+                    <>
+                        <p>{membership} membership</p>
+                        <a href={`/checkout?stage=membership`}>Edit</a>
+                    </>
+                }
+            </Drawer.Header>
+            <Drawer.Body isOpen={stage === 'membership'}>
+                <MembershipChoice onSelectCallback={handleMembershipselection}/>
+            </Drawer.Body>
+            <Drawer.Footer isOpen={stage === 'membership'}></Drawer.Footer>
         </Drawer>
         <Drawer 
             isOpen={stage == 'addons'} 
@@ -72,7 +110,7 @@ const Checkout = () => {
             next={determineNext('addons')}
         >
             <h1>Addons</h1>
-            <button onClick={() => setContinueWithSelected(!continueWithSelected)}>Continue without addons</button>
+            <button onClick={() => navigate('/checkout?stage=details')}>Continue without addons</button>
         </Drawer>
         <Drawer 
             isOpen={stage == 'details'} 

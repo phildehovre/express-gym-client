@@ -3,16 +3,7 @@ import './drawer.css'
 import { ChevronRight } from 'lucide-react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
-const Drawer = ({children, isOpen, header, next}) => {
-
-    const [searchParams] = useSearchParams()
-    const navigate = useNavigate()
-
-    const updateUrl = () => {
-        const newParams = new URLSearchParams(searchParams)
-        newParams.set('stage', next)
-        navigate(`?${newParams.toString()}`)
-    }
+const Drawer = ({children}) => {
 
   return (
         <div className="drawer">
@@ -40,10 +31,10 @@ const Body = ({children, isOpen}) => {
     }
 }
 
-const Footer =  ({children}) => {
+const Footer =  ({children, isOpen}) => {
     return (
         <div className="footer_ctn">
-            {children}
+            {isOpen && children}
         </div>
     )
 }

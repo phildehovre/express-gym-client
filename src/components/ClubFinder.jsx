@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import './ClubFinder.css'
-import {Loader, SearchIcon} from 'lucide-react'
+import {SearchIcon} from 'lucide-react'
 import { fetchWithCredentials } from '../utils/fetchWithCredentials'
 import ClubCard from './ClubCard'
 import Spinner from './Spinner'
 
-const ClubFinder = () => {
+const ClubFinder = (props) => {
 const [term, setTerm] = useState('')
 const [language,setLanguage] = useState('')
 const [location, setLocation] = useState('')
 const [locations, setLocations] = useState([])
 const [locSuggestions, setLocSuggestions] = useState([])
 const [currentPosition, setCurrentPosition] = useState([])
-const [selectedRange, setSelectedRange] = useState(55)
+const [selectedRange, setSelectedRange] = useState(10000)
+
+const {offset} = props
 
 const DEBOUNCE_DELAY = 500; 
 
@@ -56,6 +58,7 @@ useEffect(() => {
 }, [currentPosition, selectedRange])
 
 
+
 useEffect(() => {
     //TODO: Check cookies for location
     (async () => {
@@ -90,7 +93,13 @@ const renderClubCards = () => {
     if (locations && locations.length > 0) {
         return locations.map((loc, i) => {
             return (
-                <ClubCard className="location_btn" key={loc.name+i} location={loc} />
+                <ClubCard 
+                    className="location_btn" 
+                    key={loc.name+i} 
+                    location={loc} 
+                    onSelect={props.onSelect}
+                    selectedClub={props.selectedClub}
+                />
             )
         })
     } else {
@@ -98,12 +107,12 @@ const renderClubCards = () => {
     }
 }
 
+console.log(locations)
   return (
 
     <div className="clubfinder">
         <div className="background"></div>
-        <div className="search_ctn">
-                <h1>Find your club</h1>
+        <div className={`search_ctn ${offset ? 'offset': ''}`}>
                 {/* TODO: count clubs */}
                 <p className="text-dark">We have <span className="highlight">100+</span>clubs in <span className="highlight">{location}</span></p>
             <div className="searchbar">

@@ -1,12 +1,53 @@
 .clubcard_ctn {
     box-shadow: .25em .25em .5em .25em rgba(0, 0, 0, 0.123);
     padding: 1em 2em;
+    color: black;
+
+    &.selected {
+        outline: 3px solid var(--clr-accent-primary)
+    }
+}
+
+.clubcard_left, 
+.clubcard_right {
+    margin: 0;
+    width: 100%;
+}
+
+.clubcard_left > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1; 
 }
 
 .clubcard_header {
+     > h1 {
+        margin: 0;
+        font-size: 1.5em;
+     }
 
 }
 
 .clubcard_body {
+ display: flex;
+ gap: 1em;
 
+    .clubcard_right {
+        height: 100%;
+        width: 100%;
+
+        > h2 {
+            font-size: 1em;
+        }
+
+        > ul > li {
+            font-size: .8em;
+        }
+    }
+}
+
+.extra {
+    display: flex;
+    gap: .5em;
+    position: relative;
 }

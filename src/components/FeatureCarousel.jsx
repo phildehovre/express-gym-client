@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import './FeatureCarousel.css'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/css'
-import Rectangle from './Rectangle';
 
 const FeatureCarousel = () => {
 
@@ -39,7 +38,6 @@ const FeatureCarousel = () => {
                     key={item.imgUrl}
                     className="carousel_item"
                     >
-                    {/* <Rectangle /> */}
                     <div className="img_ctn">
                         <div className="rectangle"></div>
                         <img 
@@ -52,13 +50,12 @@ const FeatureCarousel = () => {
                             <p>{item.content}</p>
                         </div>
                     </div>
-                   
                 </SwiperSlide>
             )
         })
     }
   return (
-    <div className="carousel_ctn">
+    <div className="carousel_ctn mobile">
         <Swiper 
             spaceBetween={100}
             slidesPerView={1}

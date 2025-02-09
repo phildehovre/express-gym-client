@@ -3,12 +3,14 @@
     width: 100%;
     border: 1px solid rgba(128, 128, 128, 0.24);
     margin: .5em 0;
-    padding: 1em .25em
+    padding: 1em .25em;
+    height: 100%
 }
 .header_ctn {
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    padding: 2.5rem;
 
     > * {
         margin: 0;
