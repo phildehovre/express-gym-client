@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { fetchWithCredentials } from '../utils/fetchWithCredentials'
 import MapComponent from '../components/Map'
@@ -6,6 +6,7 @@ import Clubs from '../components/Clubs'
 import Sheet from '../components/Sheet'
 import Spinner from '../components/Spinner'
 import ClubCard from '../components/ClubCard'
+import { CheckoutContext } from '../context/Checkoutcontext'
 
 const LocationsPage = () => {
   const PAGE_URL = '/clubs'
@@ -13,8 +14,9 @@ const LocationsPage = () => {
   const [selectedLocation, setSelectedLocation] = useState(undefined)
   const [scrollPosition, setScrollPosition] = useState(0)
   const [fetching,setFetching] = useState(false)
-  const [page, setPage] = useState(0)
   const [paginate, setPaginate] = useState({g: 0, s: 0})
+
+  const {location, setLocation} = useContext(CheckoutContext)
 
 
   /**
@@ -51,12 +53,6 @@ const LocationsPage = () => {
       }
   }, [scrollPosition])
 
-  useEffect(() => {
-    if (selectedLocation) {
-      setLocations(prev => prev.filter(loc => loc._id !== selectedLocation._id))
-    }
-  }, [selectedLocation])
-
   const handleClubsScroll = (e) => {
     const {scrollHeight, clientHeight, scrollTop} = e.target
     const position = Math.ceil((
@@ -67,23 +63,12 @@ const LocationsPage = () => {
 
   return (
     <div className="responsive_page" style={{height: '100svh'}}>
-        <MapComponent 
-          locations={locations} 
-          selectLocation={setSelectedLocation}
-        />
+        <MapComponent locations={locations} selectLocation={setLocation} />
         <Sheet onScroll={handleClubsScroll}>
-          {
-            selectedLocation && 
-            <>
-              <ClubCard location={selectedLocation} />
-              <hr/>
-            </>
-          }
-          <Clubs locations={locations} />
+          {location && <ClubCard location={location} />}
+          <Clubs locations={locations.filter((loc) => loc._id !== location._id)} />
           <div style={{height: '5em', overflow: 'hidden', color: 'var(--clr-accent-primary)'}}>
-          {
-            fetching && <Spinner />
-          }
+            {fetching && <Spinner /> }
           </div>
         </Sheet>
     </div>

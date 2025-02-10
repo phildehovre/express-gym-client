@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {APIProvider, Map, AdvancedMarker, Pin} from '@vis.gl/react-google-maps'
 import { styles } from '../const/styles'
 import './MapWrapper.css'
+import { CheckoutContext } from '../context/Checkoutcontext'
 
 const MapComponent = ({locations, selectLocation}) => {
     const [isLoaded, setIsLoaded] = React.useState(false)
+
+    const {location, setLocation} = useContext(CheckoutContext)
 
     const renderMarkers = () => {
         return locations.map((loc, i) => {
@@ -13,7 +16,7 @@ const MapComponent = ({locations, selectLocation}) => {
                 <AdvancedMarker
                     key={loc.name+i} 
                     position={{lat, lng}}
-                    onClick={() => {selectLocation(loc)}}
+                    onClick={() => {setLocation(loc)}}
                 >
                     <Pin 
                         background={styles.clrAccentPrimary} 

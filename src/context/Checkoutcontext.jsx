@@ -12,8 +12,8 @@ export const CheckoutContext = createContext();
         membership,
         setMembership
     }
-console.log(location)
 
+    console.log(location)
   return (
     <CheckoutContext.Provider value={value}>
         {children}
