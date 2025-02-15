@@ -39,7 +39,16 @@ const Footer =  ({children, isOpen}) => {
     )
 }
 
+const Breadcrumbs =  ({children, isOpen}) => {
+    return (
+        <div className="breadcrumbs_ctn">
+            {isOpen && children}
+        </div>
+    )
+}
+
 Drawer.Header = Header
+Drawer.Header.Breadcrumbs = Breadcrumbs
 Drawer.Body = Body
 Drawer.Footer = Footer
 

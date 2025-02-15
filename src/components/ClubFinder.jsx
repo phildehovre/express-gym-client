@@ -107,7 +107,6 @@ const renderClubCards = () => {
     }
 }
 
-console.log(locations)
   return (
 
     <div className="clubfinder">

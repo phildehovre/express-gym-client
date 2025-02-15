@@ -13,7 +13,8 @@ export const CheckoutContext = createContext();
         setMembership
     }
 
-    console.log(location)
+
+    //  TODO: setCookie on location selection
   return (
     <CheckoutContext.Provider value={value}>
         {children}

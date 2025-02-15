@@ -61,12 +61,18 @@ const LocationsPage = () => {
     setScrollPosition(position)
   }
 
+  const filteredLocations = () => {
+    if (location) {
+      return locations.filter(loc => loc._id !== location._id)
+    }
+    return locations
+  }
   return (
     <div className="responsive_page" style={{height: '100svh'}}>
         <MapComponent locations={locations} selectLocation={setLocation} />
         <Sheet onScroll={handleClubsScroll}>
           {location && <ClubCard location={location} />}
-          <Clubs locations={locations.filter((loc) => loc._id !== location._id)} />
+          <Clubs locations={filteredLocations()} />
           <div style={{height: '5em', overflow: 'hidden', color: 'var(--clr-accent-primary)'}}>
             {fetching && <Spinner /> }
           </div>

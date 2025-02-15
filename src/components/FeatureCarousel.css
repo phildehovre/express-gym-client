@@ -2,7 +2,12 @@
     overflow-x: hidden;
     margin: 0 auto;
     padding: 1.5em 0;
-    height: 75vh;
+    height: 60vh;
+
+    .swiper-pagination-bullet {
+        color: green;
+        background: var(--clr-accent-primary);
+      }
 }
 
 .feature_carousel {

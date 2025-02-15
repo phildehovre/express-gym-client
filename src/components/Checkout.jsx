@@ -6,6 +6,8 @@ import MembershipChoice from './membershipChoice'
 import useCookies from '../hooks/useCookies'
 import { CheckoutContext } from '../context/Checkoutcontext'
 import ClubDetail from './ClubDetail'
+import DetailsForm from './DetailsForm'
+import AddonsForm from './AddonsForm'
 
 const Checkout = () => {
     const [homeClub, setHomeClub] = useState(undefined)
@@ -18,10 +20,22 @@ const Checkout = () => {
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
     const {setCookie, getCookie, deleteCookie} = useCookies()
-    const {location} = useContext(CheckoutContext)
+    const {location, setLocation} = useContext(CheckoutContext)
     const stage = searchParams.get('stage')
     
     const checkoutOrder = ['homeclub', 'membership', 'addons', 'details', 'payment']
+
+    useEffect(() => {
+        if (!location) {
+            navigate('/checkout?stage=homeclub')
+        }
+    }, [])
+
+    useEffect(() => {
+        if (location) {
+            setLocation(location)
+        }
+    }, [location])
 
     useEffect(() => {
         const newParams = new URLSearchParams(searchParams)
@@ -44,7 +58,6 @@ const Checkout = () => {
         }
 
     }, [stage])
-    console.log(homeClub)
 
     const handleMembershipselection = (membershipType) => {
         deleteCookie('type')
@@ -69,13 +82,10 @@ const Checkout = () => {
         <Drawer> 
             <Drawer.Header >
                 <h1>Select your home club</h1>
-                {
-                    homeClub && stage !== 'homeclub' && 
-                    <>
-                        <p>{homeClub.name}</p>
-                        <a href={`/checkout?stage=homeclub`}>Edit</a>
-                    </>
-                }
+                <Drawer.Header.Breadcrumbs isOpen={homeClub && stage !== 'homeclub' }>
+                    <p>{homeClub && homeClub.name}</p>
+                    <a href={`/checkout?stage=homeclub`}>Edit</a>
+                </Drawer.Header.Breadcrumbs>  
             </Drawer.Header>
             <Drawer.Body isOpen={stage == 'homeclub'}>
                 <ClubFinder 
@@ -104,20 +114,33 @@ const Checkout = () => {
             </Drawer.Body>
             <Drawer.Footer isOpen={stage === 'membership'}></Drawer.Footer>
         </Drawer>
-        <Drawer 
-            isOpen={stage == 'addons'} 
-            header='Add-ons'
-            next={determineNext('addons')}
-        >
-            <h1>Addons</h1>
-            <button onClick={() => navigate('/checkout?stage=details')}>Continue without addons</button>
+        <Drawer>
+            <Drawer.Header>
+                <h1>Add-Ons</h1>
+            </Drawer.Header>
+            <Drawer.Body isOpen={stage == 'addons'}>
+                <AddonsForm />
+                <button onClick={() => navigate('/checkout?stage=details')}>Continue without addons</button>
+            </Drawer.Body>
         </Drawer>
         <Drawer 
             isOpen={stage == 'details'} 
             header='Details'
             next={determineNext('details')}
         >
-            <h1>Your details</h1>
+            <Drawer.Header>
+                <h1>Your details</h1>
+                <Drawer.Header.Breadcrumbs isOpen={stage !== 'details'}>
+
+                </Drawer.Header.Breadcrumbs>
+            </Drawer.Header>
+            <Drawer.Body
+                isOpen={stage == 'details'}
+                header='Your details'
+                next={determineNext('details')}
+            >
+                <DetailsForm />
+            </Drawer.Body>
         </Drawer>
         <Drawer 
             isOpen={stage == 'payment'} 

@@ -3,6 +3,7 @@ import React from 'react'
 import './ClubDetail.css'
 
 const ClubDetail = ({location}) => {
+    
   return (
   <div className="club-detail_ctn">
     <div className="club-detail_header">

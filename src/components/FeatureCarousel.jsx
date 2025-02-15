@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import './FeatureCarousel.css'
 import {Swiper, SwiperSlide} from 'swiper/react'
 import 'swiper/css'
+import 'swiper/css/pagination'
+
+import {Pagination} from 'swiper/modules'
 
 const FeatureCarousel = () => {
 
@@ -61,6 +64,8 @@ const FeatureCarousel = () => {
             slidesPerView={1}
             className='feature_carousel'
             onSwiper={(swiper) => console.log(swiper)}
+            pagination={true}
+            modules={[Pagination]}
         >
             {renderCarouselItems()}
         </Swiper>
