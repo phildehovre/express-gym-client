@@ -18,6 +18,13 @@ const {offset} = props
 
 const DEBOUNCE_DELAY = 500; 
 
+
+useEffect(() => {
+    if (term) {
+        setTerm('')
+    }
+}, [])
+
 useEffect(() => {
     const handler = setTimeout(async () => {
         if (term) {
@@ -58,7 +65,6 @@ useEffect(() => {
 }, [currentPosition, selectedRange])
 
 
-
 useEffect(() => {
     //TODO: Check cookies for location
     (async () => {
@@ -82,7 +88,12 @@ const renderLocations = () => {
     if (locSuggestions && locSuggestions.length > 0) {
         return locSuggestions.map((loc, i) => {
             return (
-                <li className="location_btn" key={loc.name+i} id={loc._id}>{loc.city}</li>
+                <li 
+                    className="location_btn" 
+                    key={loc.name+i} 
+                    id={loc._id}
+                    onClick={() => {setTerm(loc.city)}}
+                >{loc.city}</li>
             )
         })
 

@@ -15,7 +15,7 @@ const ClubDetail = ({location}) => {
             <ul>
                 {location.extrasIds.map((e,i) => {
                     return (
-                        <li>
+                        <li key={e+i}>
                             <CheckIcon />
                             {e.label}
                         </li>

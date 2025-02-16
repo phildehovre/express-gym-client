@@ -1,0 +1,48 @@
+.details_ctn {
+    > .input-row {
+        display: flex;
+        flex-direction: column;
+        gap: .25em;
+        justify-content: center;
+        width: 100%;
+
+        > .control {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            > label {
+                width: 100%;
+
+                > input {
+                    background: transparent;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    padding: .75em;
+                    border-radius: .25em;
+                    margin-top: .25em;
+                    width: 100%;
+
+                    &:hover {
+                        border: 1px solid var(--clr-accent-primary);
+                        outline: none;
+                    }
+                }
+            }
+
+            }
+    .half-size {
+        flex-shrink: 1.5;
+    }
+    }
+}
+
+@media (min-width: 500px) {
+    .details_ctn {
+        > .input-row {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+    }
+
+
+}

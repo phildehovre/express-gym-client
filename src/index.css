@@ -116,6 +116,16 @@ button:focus-visible {
   color: var(--clr-text-dark)
 }
 
+.error {
+  color: rgb(255, 81, 81);
+  font-size: .9rem;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

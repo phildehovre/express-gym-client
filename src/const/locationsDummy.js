@@ -151,3 +151,41 @@ export const locations = [
     "imgUrl": "https://res.cloudinary.com/dtnif6mzm/image/upload/v1739006956/express-gym/locations/Leonardo_Kino_XL_A_modern_and_stylish_gym_storefront_on_a_bust_2_1_i5hhfm.jpg"
   }
 ];
+
+
+export const locationDummy = {
+    "geolocation": {
+        "type": "Point",
+        "coordinates": [
+            5.3378,
+            50.9307
+        ]
+    },
+    "_id": "67a7279d9d51d8bf0fcb0cfe",
+    "name": "Express Gym Hasselt Extra",
+    "address": "Hoogstraat 15",
+    "postcode": "3500",
+    "city": "Hasselt",
+    "country": "Belgium",
+    "phone": "+32 11 345 6789",
+    "email": "hasselt@expressgym.be",
+    "extrasIds": [
+        {
+            "_id": "67a3a7adfdae4a594dcb0ce2",
+            "label": "Express Energy Drink Pass",
+            "description": "Unlimited Express Gym Energy Drink at the gym.",
+            "price": 10,
+            "period": "monthly"
+        },
+        {
+            "_id": "67a3a7adfdae4a594dcb0ce3",
+            "label": "Personal Trainer - Standard",
+            "description": "One session per week with a certified personal trainer.",
+            "price": 50,
+            "period": "weekly"
+        }
+    ],
+    "imgUrl": "https://res.cloudinary.com/dtnif6mzm/image/upload/v1739006955/express-gym/locations/Leonardo_Kino_XL_A_modern_and_stylish_gym_storefront_on_a_bust_0_2_htcpsw.jpg",
+    "createdAt": "2025-02-15T15:30:18.570Z",
+    "updatedAt": "2025-02-15T15:30:18.570Z"
+}
