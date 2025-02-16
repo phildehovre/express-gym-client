@@ -1,15 +1,15 @@
 import React, {useEffect, useState, useContext} from 'react'
 import Drawer from './Drawer'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import ClubFinder from './ClubFinder'
-import MembershipChoice from './membershipChoice'
 import useCookies from '../hooks/useCookies'
 import { CheckoutContext } from '../context/Checkoutcontext'
+import { locationDummy } from '../const/locationsDummy'
+import ClubFinder from './ClubFinder'
+import MembershipChoice from './membershipChoice'
 import ClubDetail from './ClubDetail'
 import DetailsForm from './DetailsForm'
 import AddonsForm from './AddonsForm'
-import { use } from 'react'
-import { locationDummy } from '../const/locationsDummy'
+import PaymentForm from './PaymentForm'
 
 var DEBUG_CHECKOUT = true
 
@@ -127,7 +127,7 @@ const Checkout = () => {
                     membership && drawer !== 'membership' && 
                     <>
                         <p>{membership} membership</p>
-                        <p onClick={() => setDrawer('membership')}>Edit</p>
+                        <button className="breadcrumb_btn" onClick={() => setDrawer('membership')}>Edit</button>
                     </>
                 }
             </Drawer.Header>
@@ -141,9 +141,9 @@ const Checkout = () => {
                 <h1>Add-Ons</h1>
                 { continueWithSelected &&
                     <Drawer.Header.Breadcrumbs
-                        isOpen={drawer !== addons}
+                        isOpen={drawer !== 'addons'}
                     >
-                    <p onClick={() => setDrawer('addons')}></p>
+                    <button className="breadcrumb_btn" onClick={() => setDrawer('addons')}>Edit</button>
                     </Drawer.Header.Breadcrumbs>
                 }
             </Drawer.Header>
@@ -167,6 +167,7 @@ const Checkout = () => {
                 <h1>Your details</h1>
                 <Drawer.Header.Breadcrumbs isOpen={drawer !== 'details'}>
 
+                    <button className="breadcrumb_btn" onClick={() => setDrawer('details')}>Edit</button>
                 </Drawer.Header.Breadcrumbs>
             </Drawer.Header>
             <Drawer.Body
@@ -188,9 +189,11 @@ const Checkout = () => {
         >
             <Drawer.Header>
                 <h1>Payment</h1>
+                <Drawer.Header.Breadcrumbs isOpen={drawer !== 'payment'}>
+                </Drawer.Header.Breadcrumbs>
             </Drawer.Header>
             <Drawer.Body isOpen={drawer == 'payment'}>
-                <h2>Is open</h2>
+                    <PaymentForm />
             </Drawer.Body>
         </Drawer>
     </div>

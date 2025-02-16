@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './DetailsForm.css';
 import { useForm } from 'react-hook-form';
 
@@ -7,7 +7,16 @@ const DetailsForm = ({ details, onSubmit}) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+        setValue,
+    } = useForm({defaultValues: details});
+
+    useEffect(() => {
+        if (details) {
+            Object.keys(details).forEach((key) => {
+                setValue(key, details[key])
+            })
+        }
+    }, [details, setValue])
 
 
     return (
