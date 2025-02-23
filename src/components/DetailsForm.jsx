@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './DetailsForm.css';
+import './Form.css';
 import { useForm } from 'react-hook-form';
 
 const DetailsForm = ({ details, onSubmit}) => {
@@ -18,9 +18,8 @@ const DetailsForm = ({ details, onSubmit}) => {
         }
     }, [details, setValue])
 
-
     return (
-        <form className="details_ctn" onSubmit={handleSubmit(onSubmit)}>
+        <form className="details_ctn form_ctn" onSubmit={handleSubmit(onSubmit)}>
             <h2>Personal Details</h2>
 
             {/* Gender Selection */}

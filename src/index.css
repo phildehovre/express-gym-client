@@ -27,6 +27,7 @@
   /* Colors */
   --clr-cta: rgb(78, 7, 192);
   --clr-accent-primary: rgb(37, 230, 204);
+  --clr-accent-primary-o1: rgba(0, 255, 221, 0.116);
   --clr-accent-secondary: rgb(0, 117, 102);
   --clr-text-dark: rgb(19, 19, 19);
   --clr-text-light: white;
@@ -121,9 +122,9 @@ button:focus-visible {
   font-size: .9rem;
 }
 
-.flex-row {
+.flex-col {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: light) {
@@ -149,6 +150,11 @@ button:focus-visible {
 @media (min-width: 768px) {
   .mobile {
     display: none
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
   }
 
   .desktop {

@@ -4,16 +4,40 @@
     border: 1px solid rgba(128, 128, 128, 0.24);
     margin: .5em 0;
     padding: 1em .25em;
-    height: 100%
-}
-.header_ctn {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding: .5rem;
+    height: 100%;
 
-    > * {
-        margin: 0;
-        padding: 0;
+    > .header_ctn {
+        display: flex;
+        width: 100%;
+        padding: .5rem;
+        justify-content: space-between;
+
+        > * {
+            margin: 0;
+            padding: 0;
+        }
+
+        > .breadcrumbs_ctn {
+            display: flex;
+            gap: .25em;
+
+            > p {
+                align-content: center;
+                color: var(--clr-accent-secondary);
+                font-size: .8rem;
+            }
+
+            > button {
+                width: 5rem;
+            }
+        }
+}
+
+}
+@media (min-width: 768px) {
+    .drawer {
+        > .body_ctn {
+            padding: 2.5em 3em;
+        }
     }
 }

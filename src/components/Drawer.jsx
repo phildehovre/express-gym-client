@@ -1,7 +1,6 @@
 import React from 'react'
 import './drawer.css'
 import { ChevronRight } from 'lucide-react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const Drawer = ({children}) => {
 
@@ -15,8 +14,7 @@ const Drawer = ({children}) => {
 const Header = ({children}) => {
         return (
                 <div className="header_ctn">
-                    <ChevronRight/>
-                {children}
+                    {children}
                 </div>
         )
 }
@@ -48,8 +46,8 @@ const Breadcrumbs =  ({children, isOpen}) => {
 }
 
 Drawer.Header = Header
-Drawer.Header.Breadcrumbs = Breadcrumbs
 Drawer.Body = Body
 Drawer.Footer = Footer
+Drawer.Header.Breadcrumbs = Breadcrumbs
 
 export default Drawer

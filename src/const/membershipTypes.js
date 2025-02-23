@@ -39,3 +39,18 @@ export const membershipTypes = [
         ]
     }
 ];
+
+export const membershipPaymentTypes = {
+    monthly: {
+        label: "Per 4 weeks",
+        description: "Pay your subscription annually. After 1 year, your contract is automatically renewed.",
+        price: "324.87",
+        reminder: "You've chosen a contract with payment every 4 weeks, the first payment shall be made through a card or online payment."
+    },
+    yearly: {
+        label: "Annually (52 weeks)",
+        description: "When you register you only pay your subscription fee. The first period membership fee will be debited after your free period. Your membership fee will be debited automatically every 4 weeks.",
+        price: "39.99",
+        reminder: "You've chosen a contract with payment every 52 weeks (annual), the first payment shall be made through a card-or online payment."
+    },
+}
